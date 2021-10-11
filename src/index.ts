@@ -11,8 +11,12 @@ if (require('electron-squirrel-startup')) {
 const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
+    height: 700,
+    width: 1200,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
   })
 
   // and load the index.html of the app.
@@ -46,3 +50,4 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+import './config/test'

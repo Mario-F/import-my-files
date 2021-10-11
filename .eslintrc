@@ -20,6 +20,7 @@
     "plugin:import/warnings"
   ],
   "rules": {
+    "import/no-unresolved": [0],
     "comma-dangle": [2,"always-multiline"],
     "no-cond-assign": [2,"except-parens"],
     "no-console": 1,

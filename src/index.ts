@@ -34,7 +34,7 @@ const createWindow = (): void => {
     width: 1200,
     webPreferences: {
       plugins: true,
-    }
+    },
   })
   const pdfFile = path.resolve(path.join(__dirname, '../..', '/examples/lorem.pdf'))
   log.debug(pdfFile)

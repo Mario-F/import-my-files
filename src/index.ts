@@ -1,4 +1,7 @@
 import { app, BrowserWindow } from 'electron'
+import log from 'electron-log'
+import jetpack from 'fs-jetpack'
+import path from 'path'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any
 
@@ -24,6 +27,20 @@ const createWindow = (): void => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
+
+  // Test pdf loading
+  const pdf = new BrowserWindow({
+    height: 700,
+    width: 1200,
+    webPreferences: {
+      plugins: true,
+    }
+  })
+  const pdfFile = path.resolve(path.join(__dirname, '../..', '/examples/lorem.pdf'))
+  log.debug(pdfFile)
+  log.debug(jetpack.exists(pdfFile))
+  pdf.loadURL(`file://${pdfFile}`)
+  pdf.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished

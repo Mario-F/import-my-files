@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from 'electron'
+import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
 import log from 'electron-log'
 import jetpack from 'fs-jetpack'
 import path from 'path'
@@ -11,7 +12,7 @@ if (require('electron-squirrel-startup')) {
   app.quit()
 }
 
-const createWindow = (): void => {
+const createWindow = async (): Promise<void> => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     height: 700,
@@ -25,11 +26,15 @@ const createWindow = (): void => {
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
 
+  // Install react dev tools
+  const installResult = await installExtension(REACT_DEVELOPER_TOOLS)
+  log.verbose(`Extension ${installResult} installed`)
+
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
 
   // Test pdf loading
-  const pdf = new BrowserWindow({
+  /* const pdf = new BrowserWindow({
     height: 700,
     width: 1200,
     webPreferences: {
@@ -40,7 +45,7 @@ const createWindow = (): void => {
   log.debug(pdfFile)
   log.debug(jetpack.exists(pdfFile))
   pdf.loadURL(`file://${pdfFile}`)
-  pdf.webContents.openDevTools()
+  pdf.webContents.openDevTools()*/
 }
 
 // This method will be called when Electron has finished

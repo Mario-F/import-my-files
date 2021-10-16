@@ -7,7 +7,10 @@ ipcMain.on('config-folder', async (event, arg) => {
   log.verbose(`ipc config-folder called with arg ${arg}`)
 
   if (arg === 'import') {
-    await dialog.showOpenDialog(null)
-    event.returnValue = { dir: 'empty' }
+    const importDialogResult = await dialog.showOpenDialog(null, {
+      properties: ['openDirectory']
+    })
+    log.debug('Import dialog result', importDialogResult)
+    event.returnValue = { dir: importDialogResult.filePaths ? importDialogResult.filePaths.pop() : null }
   }
 })

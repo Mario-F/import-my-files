@@ -1,3 +1,3 @@
 export interface IConfigFolderImport {
-  dir: string
+  dir: string | null
 }

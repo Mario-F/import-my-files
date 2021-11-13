@@ -1,6 +1,7 @@
 import React from 'react'
 import { ipcRenderer } from 'electron'
 import { MemoryRouter as Router, Switch, Route } from 'react-router-dom'
+import { IInformation } from './../shared/information'
 import { IConfigTestHomedir } from './../shared/config/test'
 import { IConfigFolderImport } from './../shared/config/folder'
 
@@ -19,10 +20,12 @@ const Main = (): JSX.Element => {
 }
 
 const Hello = () => {
+  const info: IInformation = ipcRenderer.sendSync('information')
+
   return (
     <div>
       <div className="Hello"></div>
-      <h1>Welcome to Import my Files!</h1>
+      <h1>Welcome to Import my Files! {info.appVersion}</h1>
       <button onClick={getImportFolder}>Import Directory</button>
     </div>
   )

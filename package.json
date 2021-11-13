@@ -1,7 +1,7 @@
 {
   "name": "import-my-files",
   "productName": "import-my-files",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Try to ease the process of importing files manually",
   "main": ".webpack/main",
   "scripts": {

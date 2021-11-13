@@ -1,7 +1,7 @@
 import { app, ipcMain } from 'electron'
 import log from 'electron-log'
 import jetpack from 'fs-jetpack'
-import { IConfigTestHomedir } from '../shared/config/test'
+import { IConfigTestHomedir } from '../../shared/config/test'
 
 ipcMain.on('config-test', (event, arg) => {
   log.verbose(`ipc config-test called with arg ${arg}`)
